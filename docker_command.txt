@@ -1,0 +1,33 @@
+cross-env NODE_ENV=production NODE_PORT=4102 pm2 start src/server.js
+cross-env NODE_ENV=dev NODE_PORT=4102 pm2 start src/server.js --name="node-backend Dev" -i MAX
+
+
+
+
+Backup
+
+    "dev": "cross-env NODE_ENV=dev NODE_PORT=4102 pm2 start src/server.js --name=\"node-backend Dev\" -i MAX",
+    "staging": "cross-env NODE_ENV=staging  nodemon --inspect=5001 --config nodemon.js src/server.js",
+    "production": "cross-env NODE_ENV=production nodemon --inspect=4001 --config nodemon.js src/server.js"
+
+
+node_backend_campaign
+
+
+
+docker build --build-arg DOCKER_ENV=production -t node-backend .
+docker run -d -p 4102:4102 --name node-backend node-backend
+
+
+docker-compose up --build
+
+
+server {
+  location / {
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_pass http://api:4102;
+  }
+}

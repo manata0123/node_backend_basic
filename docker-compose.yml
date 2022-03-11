@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  api:
+    restart: always
+    environment:
+      TZ: "Asia/Bangkok"
+    volumes:
+      - ./:/home/node/app
+      # - node_modules:/home/node/app/node_modules
+    build: .
+    ports:
+      - "5102:5102"
+  nginx:
+    restart: always
+    environment:
+      TZ: "Asia/Bangkok"
+    build:
+      context: ./nginx
+    ports:
+      - '8092:80'
+      #- '8080:80' #on localhost
+      #- '8004:80' #on deployd server
+    links:
+      - api

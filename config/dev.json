@@ -1,0 +1,59 @@
+{
+  "dev": {
+    "name": "Dev Mode",
+    "port": 5102,
+    "mode": "development",
+    "protocol": "http",
+    "serverUrl": "localhost",
+    "serverUrlWebUrlLink": "localhost:4102/",
+    "database": {
+      "auth": {
+        "server": "17",
+        "user": "",
+        "password": "",
+        "database": "",
+        "encrypt": false,
+        "options":{
+          "enableArithAbort": true
+        },
+        "pool": {
+          "max": 10,
+          "min": 0,
+          "idleTimeoutMillis": 30000
+        }
+      },
+      "_dev": {
+        "server": "",
+        "user": "",
+        "password": "",
+        "database": "",
+        "encrypt": false,
+        "options":{
+          "enableArithAbort": true
+        },
+        "pool": {
+          "max": 10,
+          "min": 0,
+          "idleTimeoutMillis": 30000
+        }
+      }
+    },
+    "databaseCore": {
+      "campaign": [
+        "readytomove_dev"
+      ],
+      "parcels": [
+        "parcel"
+      ],
+      "precheckin": [
+        ""
+      ]
+    },
+    "email": {
+      "host": "",
+      "port": "",
+      "username": "",
+      "password": ""
+    }
+  }
+}
